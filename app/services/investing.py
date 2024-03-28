@@ -1,25 +1,10 @@
 from datetime import datetime
-from typing import List, Union
+from typing import Union
 
-from sqlalchemy import false, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.crud.base import get_obj_investing
 from app.models import CharityProject, Donation
-
-
-async def get_obj_investing(
-    process_db_model: Union[CharityProject, Donation],
-    session: AsyncSession,
-) -> List[Union[CharityProject, Donation]]:
-    obj_investing = await session.execute(
-        select(process_db_model).where(
-            process_db_model.fully_invested == false()
-        ).order_by(
-            process_db_model.create_date
-        )
-    )
-    obj_investing = obj_investing.scalars().all()
-    return obj_investing
 
 
 async def run_investing_process(

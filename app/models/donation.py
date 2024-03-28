@@ -1,6 +1,8 @@
 from sqlalchemy import Column, ForeignKey, Integer, Text
 
-from app.core.db import Base, CommonColumnsMixin
+from app.core.db import Base
+
+from .base import CommonColumnsMixin
 
 
 class Donation(CommonColumnsMixin, Base):

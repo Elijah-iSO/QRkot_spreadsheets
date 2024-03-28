@@ -1,6 +1,8 @@
 from sqlalchemy import Column, String, Text
 
-from app.core.db import Base, CommonColumnsMixin
+from app.core.db import Base
+
+from .base import CommonColumnsMixin
 
 
 class CharityProject(CommonColumnsMixin, Base):

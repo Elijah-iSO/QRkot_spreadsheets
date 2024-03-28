@@ -1,10 +1,10 @@
-from typing import Optional
+from typing import List, Optional, Union
 
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models import User
+from app.models import CharityProject, Donation, User
 
 
 class CRUDBase:
@@ -83,3 +83,18 @@ class CRUDBase:
             select(self.model).where(attr == attr_value)
         )
         return db_obj.scalars().first()
+
+
+async def get_obj_investing(
+    process_db_model: Union[CharityProject, Donation],
+    session: AsyncSession,
+) -> List[Union[CharityProject, Donation]]:
+    obj_investing = await session.execute(
+        select(process_db_model).where(
+            process_db_model.fully_invested == 0
+        ).order_by(
+            process_db_model.create_date
+        )
+    )
+    obj_investing = obj_investing.scalars().all()
+    return obj_investing
