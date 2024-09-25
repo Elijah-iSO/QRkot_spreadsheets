@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 # QRkot_spreadseets
-=======
+
 # Приложение для Благотворительного фонда поддержки котиков QRKot.
 
 ### Краткое описание
@@ -61,4 +60,3 @@ uvicorn app.main:app --reload
 ILYA OLEYNIKOV
 GitHub:	https://github.com/Elijah-iSO
 E-mail: oleynikovis@yandex.ru
->>>>>>> master
